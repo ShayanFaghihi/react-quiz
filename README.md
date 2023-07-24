@@ -14,6 +14,7 @@ This is a quiz app built with React, utilizing the Fetch API to retrieve quiz qu
 
 ## Demo
 ![Quiz App Screenshot](./public/screenshot.png)
+---
 [Live Version](https://shayan-react-quiz.netlify.app)
 
 ## Features
