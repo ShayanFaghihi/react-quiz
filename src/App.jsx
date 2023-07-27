@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     getData();
-    return
+    return;
   }, []);
 
   const getResultHandler = (isCorrect) => {
@@ -39,8 +39,7 @@ function App() {
     setCounter(0);
     setScore(0);
     getData();
-  }
-
+  };
 
   return counter < QUESTIONS_COUNT ? (
     <QuestionBox
@@ -49,7 +48,11 @@ function App() {
       questionCount={counter + 1}
     />
   ) : (
-    <ResultBox finalScore = {score}  finalResults ={quiz} refreshQuiz={refreshQuizHandler}/>
+    <ResultBox
+      finalScore={score}
+      finalResults={quiz}
+      refreshQuiz={refreshQuizHandler}
+    />
   );
 }
 

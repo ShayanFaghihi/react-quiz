@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .container {
   width: 100%;
 }
@@ -61,5 +60,27 @@
     background-color: rgb(225 202 150 / 0.25);
     --tw-text-opacity: 1;
     color: rgb(17 75 95 / var(--tw-text-opacity));
+  }
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: transparent;
+  border-top: 2px solid #fff;
+  animation: loading linear 300ms infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

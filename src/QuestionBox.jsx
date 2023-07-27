@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import UI from "./UI";
+import Loader from "./Loader";
 
 const QuestionBox = ({ data, nextQuestion, questionCount }) => {
   const [quiz, setQuiz] = useState({ question: "", answers: [] });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (data && data.incorrect_answers) {
@@ -17,6 +19,7 @@ const QuestionBox = ({ data, nextQuestion, questionCount }) => {
           { title: data.correct_answer, isCorrect: true },
         ],
       });
+      setIsLoading(false)
     }
   }, [data]);
 
@@ -39,27 +42,33 @@ const QuestionBox = ({ data, nextQuestion, questionCount }) => {
 
   return (
     <UI>
-      <div className="flex-1 mb-5">
-        <h2 className="text-3xl text-wheat mb-4">
-          Question {questionCount}/<span className="text-sm">5</span>
-        </h2>
-        <p className="text-wheat text-md tracking-wide leading-6">
-          {decodeHTMLEntities(quiz.question)}
-        </p>
-      </div>
-      <div className="flex-1">
-        <ul>
-          {shuffleArray(quiz.answers).map((answer, key) => (
-            <li
-              key={key}
-              className="answer-lists"
-              onClick={() => nextQuestion(answer.isCorrect)}
-            >
-              {decodeHTMLEntities(answer.title)}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="flex-1 mb-5">
+            <h2 className="text-3xl text-wheat mb-4">
+              Question {questionCount}/<span className="text-sm">5</span>
+            </h2>
+            <p className="text-wheat text-md tracking-wide leading-6">
+              {decodeHTMLEntities(quiz.question)}
+            </p>
+          </div>
+          <div className="flex-1">
+            <ul>
+              {shuffleArray(quiz.answers).map((answer, key) => (
+                <li
+                  key={key}
+                  className="answer-lists"
+                  onClick={() => nextQuestion(answer.isCorrect)}
+                >
+                  {decodeHTMLEntities(answer.title)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
     </UI>
   );
 };
